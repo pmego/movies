@@ -13,10 +13,8 @@ export const ListadoPeliculas = ({ listadoState, setListadoState }) => {
     const conseguirPeliculas = () => {
         //obtenemos las películas guardadas en el localStorage
         let peliculas = JSON.parse(localStorage.getItem("pelis"));
-
-        //Las seteamos en el useState
-        setListadoState(peliculas);
-
+        peliculas === null          //Las seteamos en el useState
+            ? setListadoState([]) : setListadoState(peliculas);
         return peliculas;
     }
 
@@ -35,8 +33,10 @@ export const ListadoPeliculas = ({ listadoState, setListadoState }) => {
     }
 
     return (
+
         <>
-            {listadoState != null
+
+            {listadoState != 0
                 ? listadoState.map(peli => {
                     return (
                         <article key={peli.id} className="peli-item">
